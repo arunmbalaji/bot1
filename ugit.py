@@ -19,8 +19,8 @@ global internal_tree
 #### -------------User Variables----------------####
 ####
 # Default Network to connect using wificonnect()
-ssid = "se7en"
-password = "Combo@123"
+ssid = "Sse7en"
+password = "kkkkkkkk"
 
 # CHANGE TO YOUR REPOSITORY INFO
 # Repository must be public if no personal access token is supplied
@@ -116,6 +116,7 @@ def wificonnect(ssid=ssid, password=password):
     wlan.active(True)
     wlan.connect(ssid, password)
     while not wlan.isconnected():
+        time.sleep()
         pass
     print('Wifi Connected!!')
     print(f'SSID: {ssid}')
