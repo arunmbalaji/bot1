@@ -32,7 +32,7 @@ default_branch = 'main'
 
 # Don't remove ugit.py from the ignore_files unless you know what you are doing :D
 # Put the files you don't want deleted or updated here use '/filename.ext'
-ignore_files = ['/ugit.py','/boot.py']
+ignore_files = ['ugit.py', 'boot.py', '.gitignore']
 ignore = ignore_files
 ### -----------END OF USER VARIABLES ----------####
 
@@ -75,12 +75,14 @@ def pull_all(tree=call_trees_url, raw=raw, ignore=ignore, isconnected=False):
     log = []
     # download and save all files
     for i in tree['tree']:
+        print(f"Doing for the path {i['path']}")
         if i['type'] == 'tree':
             try:
                 os.mkdir(i['path'])
             except:
                 print(f'failed to {i["path"]} dir may already exist')
         elif i['path'] not in ignore:
+            print(f"checked file : {i['path']} against ignore tree{ignore}")
             try:
                 os.remove(i['path'])
                 log.append(f'{i["path"]} file removed from int mem')
@@ -116,7 +118,7 @@ def wificonnect(ssid=ssid, password=password):
     wlan.active(True)
     wlan.connect(ssid, password)
     while not wlan.isconnected():
-        time.sleep()
+        time.sleep(1)
         pass
     print('Wifi Connected!!')
     print(f'SSID: {ssid}')
@@ -217,6 +219,7 @@ def check_ignore(tree=call_trees_url, raw=raw, ignore=ignore):
 
 
 def remove_ignore(internal_tree, ignore=ignore):
+    print(f"removing ignored files : {ignore}")
     clean_tree = []
     int_tree = []
     for i in internal_tree:
@@ -224,6 +227,7 @@ def remove_ignore(internal_tree, ignore=ignore):
     for i in int_tree:
         if i not in ignore:
             clean_tree.append(i)
+    print(f"cleaned tree :{clean_tree}")
     return (clean_tree)
 
 
