@@ -97,9 +97,11 @@ def pull_all(tree=call_trees_url, raw=raw, ignore=ignore, isconnected=False):
                 log.append(i['path'] + ' failed to pull')
     # delete files not in Github tree
     if len(internal_tree) > 0:
+        print(f"internal : {internal_tree}")
+        print(f"ignored files:{ignore}")
         print(internal_tree, ' leftover!')
         for i in internal_tree:
-            if i['path'] not in ignore:
+            if i[1:] not in ignore:
                 os.remove(i)
                 log.append(i + ' removed from int mem')
     logfile = open('ugit_log.py', 'w')
