@@ -32,7 +32,7 @@ default_branch = 'main'
 
 # Don't remove ugit.py from the ignore_files unless you know what you are doing :D
 # Put the files you don't want deleted or updated here use '/filename.ext'
-ignore_files = ['ugit.py','boot.py']
+ignore_files = ['ugit.py', 'boot.py']
 ignore = ignore_files
 ### -----------END OF USER VARIABLES ----------####
 
@@ -99,7 +99,7 @@ def pull_all(tree=call_trees_url, raw=raw, ignore=ignore, isconnected=False):
     if len(internal_tree) > 0:
         print(internal_tree, ' leftover!')
         for i in internal_tree:
-            i['path'] not in ignore:
+            if i['path'] not in ignore:
                 os.remove(i)
                 log.append(i + ' removed from int mem')
     logfile = open('ugit_log.py', 'w')
