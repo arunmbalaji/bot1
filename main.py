@@ -24,7 +24,7 @@ motor = Motor(BIN2, BIN1, STBY, AIN1, AIN2, PWMA, PWMB, ofsetA, ofsetB)
 # motor.right(800)
 # sleep(60)
 
-print("only moving forward")
+print("only only only moving forward")
 motor.forward(500)
 sleep(10)
 
